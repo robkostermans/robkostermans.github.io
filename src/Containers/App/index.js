@@ -1,21 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Header, Main, Footer } from '../';
+
 import './App.scss';
 
 class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			profile: 'developer'
+		};
+
+		this.changeProfile = this.changeProfile.bind(this);
+	}
+
+	changeProfile = profile => {
+		this.setState({ profile: profile });
+	};
+
 	render() {
 		return (
-			<div className="App">
-				<header className="App-header">
-					<img src={logo} className="App-logo" alt="logo" />
-					<p>
-						Edit <code>src/App.js</code> and save to reload.
-					</p>
-					<a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-						Learn React!
-					</a>
-				</header>
-			</div>
+			<section className="Resume">
+				<Header className="App-header" profile={this.state.profile} changeProfile={this.changeProfile} />
+
+				<Main />
+
+				<Footer>footer/samenvatting</Footer>
+			</section>
 		);
 	}
 }

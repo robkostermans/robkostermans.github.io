@@ -1,14 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,900|Open+Sans:300,400,600');
+// font-family: 'Open Sans', sans-serif;
+// font-family: 'Noto Sans KR', sans-serif;
+:root {
+	--font-default: 'Open Sans', sans-serif;
+	--font-heading: 'Noto Sans KR', sans-serif;
+	--background: #f1f4f9;
+	--text: #414a51;
+}
+
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	padding: 0;
+	font-family: var(--font-default);
+	// font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: var(--background);
+	color: var(--text);
+	margin: 0;
+	padding: 0;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.Container {
+	max-width: 1280px;
+	margin: 0 auto;
 }

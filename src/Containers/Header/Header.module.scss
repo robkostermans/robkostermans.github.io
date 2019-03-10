@@ -1,0 +1,20 @@
+.header {
+	font-family: var(--font-heading);
+
+	padding: 1px;
+	h1 {
+		margin: 0;
+	}
+}
+.logo {
+	display: inline-block;
+	padding: 5rem 0.5rem 1rem 0.5rem;
+	margin-right: 0.5rem;
+	background-color: #000;
+	color: #fff;
+}
+
+.headline {
+	font-family: var(--font-heading);
+	font-size: 4rem;
+}
