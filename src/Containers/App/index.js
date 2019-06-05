@@ -29,7 +29,7 @@ class App extends Component {
 					hoverOffDelayInMs={150} //default: 0
 				>
 					<Holder theme="sketch" />
-					{/* <Holder theme="fill" /> */}
+					<Holder theme="fill" />
 				</ReactCursorPosition>
 			</section>
 		);
