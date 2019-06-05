@@ -33,3 +33,22 @@
 		align-items: flex-end;
 	}
 }
+
+#app{
+	position: relative;
+	max-width: 1440px;
+	margin:auto;
+	article{
+		top:0;
+		position: absolute;
+		background:#f1f4f9;
+		//opacity:0.5;
+
+	}
+
+}
+
+.fill{
+	background:red !important;
+	color:#fff;
+}
