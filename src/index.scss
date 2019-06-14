@@ -5,6 +5,7 @@
 	--font-default: 'Open Sans', sans-serif;
 	--font-heading: 'Noto Sans KR', sans-serif;
 	--background: #f1f4f9;
+	--backgroundLight: #f7faff;
 	--text: #414a51;
 }
 
@@ -19,6 +20,7 @@ body {
 	color: var(--text);
 	margin: 0;
 	padding: 0;
+	
 }
 
 code {
@@ -28,4 +30,9 @@ code {
 .Container {
 	max-width: 1280px;
 	margin: 0 auto;
+}
+
+h1{
+	letter-spacing: -2px;
+	font-size:80px;
 }

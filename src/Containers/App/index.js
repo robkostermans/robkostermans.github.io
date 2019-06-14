@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import ReactCursorPosition, { INTERACTIONS } from 'react-cursor-position';
 import { Holder } from '../';
+import { MainMap } from '../../Components';
 
-import './App.scss';
-import '../../Themes/paper.scss';
-//import fill from '../../Themes/fill.module.scss';
+//import './App.scss';
+//import '../../Themes/paper.scss';
+import styles from './app.module.scss';
+//import global from '../../Themes/build.module.scss';
 
 class App extends Component {
 	constructor(props) {
@@ -21,16 +23,20 @@ class App extends Component {
 	};
 
 	render() {
+		const styles = {
+			width: '100%',
+			height: '536px'
+		};
+
 		return (
-			<section id="app">
-				<ReactCursorPosition
-					activationInteractionMouse={INTERACTIONS.HOVER} //default
-					hoverDelayInMs={250} //default: 0
-					hoverOffDelayInMs={150} //default: 0
-				>
-					<Holder theme="sketch" />
-					<Holder theme="fill" />
-				</ReactCursorPosition>
+			<section id="app" className={styles.app}>
+				<h1>
+					<span className={global.raiseText}>Nice</span>
+					<span>title</span>
+				</h1>
+				<div style={styles}>
+					<MainMap />
+				</div>
 			</section>
 		);
 	}
