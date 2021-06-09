@@ -22,7 +22,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docs" : "./node_modules/.bin/concat-md --decrease-title-levels --dir-name-as-title --start-title-level-at 2 docs > README.md"
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +44,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.1.7"
+    "@types/react-router-dom": "^5.1.7",
+    "concat-md": "^0.3.5"
   }
 }
