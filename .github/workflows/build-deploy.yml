@@ -27,7 +27,7 @@ jobs:
     
     - name: Build project
       run: npm run build
-   
+
     - name: Run tests
       run: npm run test
 
@@ -37,6 +37,16 @@ jobs:
         name: production-files
         path: ./build
   
+    - name: Build Readme
+      run: npm run docs
+
+    - name: Update Readme
+      uses: test-room-7/action-update-file@v1
+      with:
+        file-path: ./README.md
+        commit-msg: Update Readme
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+
   deploy:
     name: Deploy
     needs: build
