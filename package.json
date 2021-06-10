@@ -25,7 +25,6 @@
     "eject": "react-scripts eject",
     "docs": "./node_modules/.bin/concat-md --decrease-title-levels --dir-name-as-title --start-title-level-at 2 docs > README.md"
   },
-  "pre-commit": [ "docs" ],
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -46,7 +45,6 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.7",
-    "concat-md": "^0.3.5",
-    "pre-commit": "^1.2.2"
+    "concat-md": "^0.3.5"
   }
 }
