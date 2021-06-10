@@ -23,7 +23,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "docs": "./node_modules/.bin/concat-md --decrease-title-levels --dir-name-as-title --start-title-level-at 2 docs > README.md"
+    "docs": "./node_modules/concat-md/dist/bin/concat-md.js --decrease-title-levels --dir-name-as-title --start-title-level-at 2 docs > README.md",
+    "postinstall": "patch-package"
   },
   "eslintConfig": {
     "extends": [
@@ -45,6 +46,7 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.7",
-    "concat-md": "^0.3.5"
+    "concat-md": "^0.3.5",
+    "patch-package": "^6.4.7"
   }
 }

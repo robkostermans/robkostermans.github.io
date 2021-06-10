@@ -1,5 +1,5 @@
 
-<a name="___intromd"></a>
+<a name="0_intromd"></a>
 
 Hi I'm Rob
 ==============
@@ -8,11 +8,11 @@ I am frontend developer with spice
 ## Projects
 
 
-<a name="__projects_projectsmd"></a>
+<a name="1_projects0_projectsmd"></a>
 
 I did a few projects
 
-<a name="__projectsminddmd"></a>
+<a name="1_projects1_minddmd"></a>
 
 ### Moet ik naar de dokter
 short description of the project with some highlights
@@ -20,14 +20,23 @@ short description of the project with some highlights
 - React Native
 - BotFramework
 - NodeJs
+
+<a name="1_projects2_gzpleinmd"></a>
+
+### GZ Plein
+short description of the project with some highlights
+- React
+- Vue
+- Piranha CMS 
+- NodeJs
 ## Education
 
 
-<a name="_education_educationmd"></a>
+<a name="2_education_educationmd"></a>
 
 
 
-<a name="_educationvumd"></a>
+<a name="2_educationvumd"></a>
 
 ### Vrije Universiteit Amsterdam
 2005 - 2008

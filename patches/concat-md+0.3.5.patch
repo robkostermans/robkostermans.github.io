@@ -1,0 +1,13 @@
+diff --git a/node_modules/concat-md/dist/index.js b/node_modules/concat-md/dist/index.js
+index 8ec2c37..58681eb 100644
+--- a/node_modules/concat-md/dist/index.js
++++ b/node_modules/concat-md/dist/index.js
+@@ -81,7 +81,7 @@ class MarkDownConcatenator {
+         return fileNames.map((fileName) => ({ path: fileName, ...front_matter_1.default(fs_1.readFileSync(fileName, { encoding: "utf8" })) }));
+     }
+     getDirParts(file) {
+-        return this.dir === path_1.dirname(file.path) ? [] : path_1.relative(this.dir, path_1.dirname(file.path)).split(path_1.sep);
++        return this.dir === path_1.dirname(file.path) ? [] : path_1.relative(this.dir, path_1.dirname(file.path)).replace(/^(.?)_/,'').split(path_1.sep);
+     }
+     addTitle(file) {
+         let titleMd = "";
