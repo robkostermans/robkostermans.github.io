@@ -24,7 +24,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "docs": "./node_modules/concat-md/dist/bin/concat-md.js --decrease-title-levels --dir-name-as-title --start-title-level-at 2 docs > README.md",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "patch-concat-md" : "npx patch-package concat-md"
   },
   "eslintConfig": {
     "extends": [

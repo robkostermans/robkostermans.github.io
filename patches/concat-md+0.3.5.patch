@@ -1,8 +1,80 @@
 diff --git a/node_modules/concat-md/dist/index.js b/node_modules/concat-md/dist/index.js
-index 8ec2c37..58681eb 100644
+index 8ec2c37..6efe847 100644
 --- a/node_modules/concat-md/dist/index.js
 +++ b/node_modules/concat-md/dist/index.js
-@@ -81,7 +81,7 @@ class MarkDownConcatenator {
+@@ -44,12 +44,71 @@ exports.gitHubLink = gitHubLink;
+ function arrify(input) {
+     return Array.isArray(input) ? input : [input];
+ }
++
++/**
++ *  ...images
++ */
++
++function transformImages(input, transform) {
++    const linkRegExp = /\[([^\]]+)?\]\(([^)]+)\)/g;
++    const aliasLinkRegExp = /^\[(.*)\]:\s+(.*?)\s*(".*"|'.*'|\(.*\))?$/gm;
++
++   let output = input;
++   let match;
++ 
++   // Transforming basic links
++   while ((match = linkRegExp.exec(input)) !== null) {
++     const string = match[0];
++     const text = match[1] || '';
++     const url = match[2];
++ 
++     /**
++      * Callback to transform a link within a Markdown string.
++      * @callback TransformCallback
++      * @param {String} link - URL of the link.
++      * @param {String} text - Text of the link.
++      * @returns {?String} Modified URL.
++      */
++     const replacement = transform(url, text);
++ 
++     if (replacement) {
++       output = output.replace(string, `[${text}](${replacement})`);
++     }
++   }
++ 
++   // Transforming alias links
++   while ((match = aliasLinkRegExp.exec(input)) !== null) {
++     const string = match[0];
++     const alias = match[1];
++     const url = match[2];
++     const title = match[3];
++     const urlBrackets = /^<.*>$/.test(url);
++     const innerUrl = urlBrackets ? url.replace(/^</, '').replace(/>$/, '') : url;
++ 
++     let replacement = transform(innerUrl, alias);
++     if (urlBrackets) {
++       replacement = `<${replacement}>`;
++     }
++ 
++     if (replacement) {
++       const titleText = title ? ' ' + title : '';
++       output = output.replace(string, `[${alias}]: ${replacement + titleText}`);
++     }
++   }
++ 
++   return output;
++ };
++ 
++
++
++
+ /**  @ignore */
+ class MarkDownConcatenator {
+     constructor(dir, { toc = false, tocLevel = 3, ignore = [], decreaseTitleLevels = false, startTitleLevelAt = 1, joinString = "\n", titleKey, dirNameAsTitle = false, fileNameAsTitle = false, } = {}) {
+         this.visitedDirs = new Set();
+         this.fileTitleIndex = new Map();
+         this.files = [];
++        this.orgDir = dir.replace(/.*\//g, "");
+         this.dir = dir;
+         this.toc = toc;
+         this.tocLevel = tocLevel;
+@@ -81,7 +140,7 @@ class MarkDownConcatenator {
          return fileNames.map((fileName) => ({ path: fileName, ...front_matter_1.default(fs_1.readFileSync(fileName, { encoding: "utf8" })) }));
      }
      getDirParts(file) {
@@ -11,3 +83,49 @@ index 8ec2c37..58681eb 100644
      }
      addTitle(file) {
          let titleMd = "";
+@@ -140,6 +199,33 @@ class MarkDownConcatenator {
+         }
+         return result;
+     }
++    modifyImages(file){
++      
++        return transformImages(file.body, (link) => {
++            if (link.startsWith("http")) {
++                return link;
++            }
++        
++            
++            const absoluteTargetPath = path_1.join(path_1.dirname(file.path), link);
++            const relativeTargetPath = path_1.relative(this.dir, absoluteTargetPath);
++            const hashPosition = absoluteTargetPath.indexOf("#");
++            const hash = hashPosition > -1 ? absoluteTargetPath.slice(hashPosition) : "";
++            const targetFile = hashPosition > -1 ? absoluteTargetPath.slice(0, hashPosition) : absoluteTargetPath;
++            
++            try {
++                const newLink = this.orgDir + "/" + relativeTargetPath;
++                
++                return newLink;
++            }
++            catch (e) {
++                /* istanbul ignore next */
++                return "";
++            }
++            console.log(link, newLink, targetFile, hash);
++        });
++    }
++
+     modifyLinks(file) {
+         return transformLinks(file.body, (link) => {
+             if (link.startsWith("http")) {
+@@ -175,6 +261,11 @@ class MarkDownConcatenator {
+         files.forEach((file) => {
+             file.body = this.modifyLinks(file); // eslint-disable-line no-param-reassign
+         });
++        // 3rd pass loop is necessary, because all titles has to be processed.
++        files.forEach((file) => {
++            file.body = this.modifyImages(file); // eslint-disable-line no-param-reassign
++        });
++
+         const result = files.map((file) => file.body).join(this.joinString);
+         return this.addToc(result);
+     }

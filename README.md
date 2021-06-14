@@ -21,6 +21,12 @@ short description of the project with some highlights
 - BotFramework
 - NodeJs
 
+With a [link](https://www.nu.nl/economie/6138654/sector-voorziet-volgende-week-grote-stappen-op-weg-naar-meer-reizen.html)
+and an image
+![alt text](docs/assets/paris.webp)
+
+
+
 <a name="1_projects2_gzpleinmd"></a>
 
 ### GZ Plein
