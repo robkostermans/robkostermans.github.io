@@ -47,6 +47,17 @@ jobs:
         commit-msg: Update Readme
         github-token: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Copy Readme
+      uses: andstor/copycat-action@v3
+      with:
+        personal_token: ${{ secrets.GITHUB_TOKEN }}
+        src_path: /README/md
+        dst_path: /.
+        dst_owner: robkostermans
+        dst_repo_name : robkostermans
+        dst_branch: main
+        dst_repo_name: copycat-action
+
   deploy:
     name: Deploy
     needs: build
