@@ -52,7 +52,6 @@ jobs:
       with:
         personal_token: ${{ secrets.GITHUB_TOKEN }}
         src_path: /README.md
-        dst_path: /.
         dst_owner: robkostermans
         dst_repo_name : robkostermans
         dst_branch: main
