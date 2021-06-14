@@ -47,14 +47,15 @@ jobs:
         commit-msg: Update Readme
         github-token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Copy Readme
-      uses: andstor/copycat-action@v3
+   - name: Copy README file
+      uses: dmnemec/copy_file_to_another_repo_action@main
+      env:
+         github-token: ${{ secrets.GITHUB_TOKEN }}
       with:
-        personal_token: ${{ secrets.GITHUB_TOKEN }}
-        src_path: /README.md
-        dst_owner: robkostermans
-        dst_repo_name : robkostermans
-        dst_branch: main
+        source_file: 'README.md'
+        destination_repo: 'robkostermans/robkostermans'
+        destination_folder: '/'
+        commit_message: 'Update from action'
 
   deploy:
     name: Deploy
