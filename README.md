@@ -45,4 +45,4 @@ short description of the project with some highlights
 <a name="2_educationvumd"></a>
 
 ### Vrije Universiteit Amsterdam
-2005 - 2008
+2005 - 2008# robkostermans
