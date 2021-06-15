@@ -40,6 +40,13 @@ jobs:
     - name: Build Readme
       run: npm run docs
 
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
     - name: Update Readme
       uses: test-room-7/action-update-file@v1
       with:
@@ -59,13 +66,6 @@ jobs:
         user_name: 'robkostermans'
         commit_message: 'Update from action'
 
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    
-    steps:
     - name: Download artifact
       uses: actions/download-artifact@v2
       with:
