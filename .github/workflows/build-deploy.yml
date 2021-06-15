@@ -50,7 +50,7 @@ jobs:
     - name: Copy README file
       uses: dmnemec/copy_file_to_another_repo_action@main
       env:
-         github-token: ${{ secrets.API_TOKEN_GITHUB }}
+         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
         source_file: 'README.md'
         destination_repo: 'robkostermans/robkostermans'
