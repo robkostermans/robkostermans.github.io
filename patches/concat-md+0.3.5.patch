@@ -1,8 +1,8 @@
 diff --git a/node_modules/concat-md/dist/index.js b/node_modules/concat-md/dist/index.js
-index 8ec2c37..6efe847 100644
+index 8ec2c37..8eb6d71 100644
 --- a/node_modules/concat-md/dist/index.js
 +++ b/node_modules/concat-md/dist/index.js
-@@ -44,12 +44,71 @@ exports.gitHubLink = gitHubLink;
+@@ -44,12 +44,49 @@ exports.gitHubLink = gitHubLink;
  function arrify(input) {
      return Array.isArray(input) ? input : [input];
  }
@@ -12,9 +12,7 @@ index 8ec2c37..6efe847 100644
 + */
 +
 +function transformImages(input, transform) {
-+    const linkRegExp = /\[([^\]]+)?\]\(([^)]+)\)/g;
-+    const aliasLinkRegExp = /^\[(.*)\]:\s+(.*?)\s*(".*"|'.*'|\(.*\))?$/gm;
-+
++   const linkRegExp = /\!\[([^\]]+)?\]\(([^)]+)\)/g; //![image name](imageurl)
 +   let output = input;
 +   let match;
 + 
@@ -34,30 +32,10 @@ index 8ec2c37..6efe847 100644
 +     const replacement = transform(url, text);
 + 
 +     if (replacement) {
-+       output = output.replace(string, `[${text}](${replacement})`);
++       output = output.replace(string, `![${text}](${replacement})`);
 +     }
 +   }
-+ 
-+   // Transforming alias links
-+   while ((match = aliasLinkRegExp.exec(input)) !== null) {
-+     const string = match[0];
-+     const alias = match[1];
-+     const url = match[2];
-+     const title = match[3];
-+     const urlBrackets = /^<.*>$/.test(url);
-+     const innerUrl = urlBrackets ? url.replace(/^</, '').replace(/>$/, '') : url;
-+ 
-+     let replacement = transform(innerUrl, alias);
-+     if (urlBrackets) {
-+       replacement = `<${replacement}>`;
-+     }
-+ 
-+     if (replacement) {
-+       const titleText = title ? ' ' + title : '';
-+       output = output.replace(string, `[${alias}]: ${replacement + titleText}`);
-+     }
-+   }
-+ 
++
 +   return output;
 + };
 + 
@@ -74,7 +52,7 @@ index 8ec2c37..6efe847 100644
          this.dir = dir;
          this.toc = toc;
          this.tocLevel = tocLevel;
-@@ -81,7 +140,7 @@ class MarkDownConcatenator {
+@@ -81,7 +118,7 @@ class MarkDownConcatenator {
          return fileNames.map((fileName) => ({ path: fileName, ...front_matter_1.default(fs_1.readFileSync(fileName, { encoding: "utf8" })) }));
      }
      getDirParts(file) {
@@ -83,41 +61,41 @@ index 8ec2c37..6efe847 100644
      }
      addTitle(file) {
          let titleMd = "";
-@@ -140,6 +199,33 @@ class MarkDownConcatenator {
+@@ -140,6 +177,33 @@ class MarkDownConcatenator {
          }
          return result;
      }
 +    modifyImages(file){
 +      
-+        return transformImages(file.body, (link) => {
-+            if (link.startsWith("http")) {
-+                return link;
++        return transformImages(file.body, (image) => {
++            if (image.startsWith("http")) {
++                return image;
 +            }
 +        
-+            
-+            const absoluteTargetPath = path_1.join(path_1.dirname(file.path), link);
++            const absoluteTargetPath = path_1.join(path_1.dirname(file.path), image);
 +            const relativeTargetPath = path_1.relative(this.dir, absoluteTargetPath);
 +            const hashPosition = absoluteTargetPath.indexOf("#");
 +            const hash = hashPosition > -1 ? absoluteTargetPath.slice(hashPosition) : "";
 +            const targetFile = hashPosition > -1 ? absoluteTargetPath.slice(0, hashPosition) : absoluteTargetPath;
 +            
++           
 +            try {
-+                const newLink = this.orgDir + "/" + relativeTargetPath;
++                const newImage = "../robkostermans.github.io/" + this.orgDir + "/" + relativeTargetPath;
 +                
-+                return newLink;
++                return newImage;
 +            }
 +            catch (e) {
 +                /* istanbul ignore next */
 +                return "";
 +            }
-+            console.log(link, newLink, targetFile, hash);
++            //console.log(link, newLink, targetFile, hash);
 +        });
 +    }
 +
      modifyLinks(file) {
          return transformLinks(file.body, (link) => {
              if (link.startsWith("http")) {
-@@ -175,6 +261,11 @@ class MarkDownConcatenator {
+@@ -175,6 +239,11 @@ class MarkDownConcatenator {
          files.forEach((file) => {
              file.body = this.modifyLinks(file); // eslint-disable-line no-param-reassign
          });

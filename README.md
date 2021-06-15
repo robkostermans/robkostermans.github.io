@@ -21,9 +21,12 @@ short description of the project with some highlights
 - BotFramework
 - NodeJs
 
-With a [link](https://www.nu.nl/economie/6138654/sector-voorziet-volgende-week-grote-stappen-op-weg-naar-meer-reizen.html)
+With a [direct link](https://www.nu.nl/economie/6138654/sector-voorziet-volgende-week-grote-stappen-op-weg-naar-meer-reizen.html)
+
+With a [internal links](#2_educationvumd)
+
 and an image
-![alt text](docs/assets/paris.webp)
+![alt text](../robkostermans.github.io/docs/assets/paris.webp)
 
 
 
@@ -45,4 +48,4 @@ short description of the project with some highlights
 <a name="2_educationvumd"></a>
 
 ### Vrije Universiteit Amsterdam
-2005 - 2008# robkostermans
+2005 - 2008
