@@ -4,4 +4,4 @@ title: false
 ---
 Hi I'm Rob
 ==============
-I am frontend developer with spice
+I am either a interaction designer with a passion for front-end development or a front-end webdeveloper with passion for user-centered design...
