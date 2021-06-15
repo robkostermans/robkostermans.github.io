@@ -55,6 +55,8 @@ jobs:
         source_file: 'README.md'
         destination_repo: 'robkostermans/robkostermans'
         destination_folder: '/'
+        user_email: 'robkostermans@email.com'
+        user_name: 'robkostermans'
         commit_message: 'Update from action'
 
   deploy:
