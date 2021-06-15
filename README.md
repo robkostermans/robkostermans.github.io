@@ -26,7 +26,7 @@ With a [direct link](https://www.nu.nl/economie/6138654/sector-voorziet-volgende
 With a [internal links](#2_educationvumd)
 
 and an image
-![alt text](../robkostermans.github.io/docs/assets/paris.webp)
+![alt text](docs/assets/paris.webp)
 
 
 
