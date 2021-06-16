@@ -24,8 +24,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "docs": "./node_modules/concat-md/dist/bin/concat-md.js --decrease-title-levels --dir-name-as-title --start-title-level-at 2 docs > README.md",
+    "convert": "./node_modules/.bin/processmd 'docs/**/*.{yml,md}' --includeBodyProps --stdout --outputDir data > data/index.json",
     "postinstall": "patch-package",
-    "patch-concat-md" : "npx patch-package concat-md"
+    "patch-concat-md": "npx patch-package concat-md"
   },
   "eslintConfig": {
     "extends": [
@@ -48,6 +49,7 @@
   "devDependencies": {
     "@types/react-router-dom": "^5.1.7",
     "concat-md": "^0.3.5",
-    "patch-package": "^6.4.7"
+    "patch-package": "^6.4.7",
+    "processmd": "^4.6.1"
   }
 }
