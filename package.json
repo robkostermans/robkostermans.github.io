@@ -24,7 +24,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "docs": "./node_modules/concat-md/dist/bin/concat-md.js --decrease-title-levels --dir-name-as-title --start-title-level-at 2 docs > README.md",
-    "convert": "./node_modules/.bin/processmd 'docs/**/*.{yml,md}' --includeBodyProps --stdout --outputDir data > data/index.json",
+    "convert": "mkdir public/data && ./node_modules/.bin/processmd 'docs/**/*.{yml,md}' --includeBodyProps --stdout --outputDir public/data > public/data/index.json",
     "postinstall": "patch-package",
     "patch-concat-md": "npx patch-package concat-md"
   },
